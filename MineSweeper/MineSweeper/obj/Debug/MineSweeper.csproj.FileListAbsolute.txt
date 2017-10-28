@@ -1,0 +1,10 @@
+G:\MineSweeper\MineSweeper\bin\Debug\MineSweeper.exe
+G:\MineSweeper\MineSweeper\bin\Debug\MineSweeper.pdb
+G:\MineSweeper\MineSweeper\obj\Debug\MineSweeper.csprojResolveAssemblyReference.cache
+G:\MineSweeper\MineSweeper\obj\Debug\MineSweeper.MainForm.resources
+G:\MineSweeper\MineSweeper\obj\Debug\MineSweeper.MainMenu.resources
+G:\MineSweeper\MineSweeper\obj\Debug\MineSweeper.Properties.Resources.resources
+G:\MineSweeper\MineSweeper\obj\Debug\MineSweeper.csproj.GenerateResource.Cache
+G:\MineSweeper\MineSweeper\obj\Debug\MineSweeper.exe
+G:\MineSweeper\MineSweeper\obj\Debug\MineSweeper.pdb
+G:\MineSweeper\MineSweeper\obj\Debug\MineSweeper.CustomForm.resources
