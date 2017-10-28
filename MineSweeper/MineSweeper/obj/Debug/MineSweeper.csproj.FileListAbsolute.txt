@@ -8,3 +8,13 @@ G:\MineSweeper\MineSweeper\obj\Debug\MineSweeper.csproj.GenerateResource.Cache
 G:\MineSweeper\MineSweeper\obj\Debug\MineSweeper.exe
 G:\MineSweeper\MineSweeper\obj\Debug\MineSweeper.pdb
 G:\MineSweeper\MineSweeper\obj\Debug\MineSweeper.CustomForm.resources
+Z:\MineSweeper\MineSweeper\obj\Debug\MineSweeper.exe
+Z:\MineSweeper\MineSweeper\obj\Debug\MineSweeper.pdb
+Z:\MineSweeper\MineSweeper\bin\Debug\MineSweeper.exe
+Z:\MineSweeper\MineSweeper\bin\Debug\MineSweeper.pdb
+Z:\MineSweeper\MineSweeper\obj\Debug\MineSweeper.csprojResolveAssemblyReference.cache
+Z:\MineSweeper\MineSweeper\obj\Debug\MineSweeper.CustomForm.resources
+Z:\MineSweeper\MineSweeper\obj\Debug\MineSweeper.MainForm.resources
+Z:\MineSweeper\MineSweeper\obj\Debug\MineSweeper.MainMenu.resources
+Z:\MineSweeper\MineSweeper\obj\Debug\MineSweeper.Properties.Resources.resources
+Z:\MineSweeper\MineSweeper\obj\Debug\MineSweeper.csproj.GenerateResource.Cache

@@ -11,15 +11,14 @@ namespace MineSweeper
 {
     public partial class MainForm : Form
     {
-        int n, m, x, y, mines, width, height, standart;
+        int n, m, x, y, mines, width, height;
         public MainForm()
         {
             InitializeComponent();
-            standart = 2;
-            x = standart;
-            y = standart;
-            width = 40;
-            height = 40;
+            x = Data.Standart.X;
+            y = Data.Standart.Y;
+            width = Data.Size.CellWidth;
+            height = Data.Size.CellHeight;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -27,24 +26,24 @@ namespace MineSweeper
             switch(Data.Stage.Value)
             {
                 case -1:
-                    n = Data.Size.Height;
-                    m = Data.Size.Width;
+                    n = Data.Size.Width;
+                    m = Data.Size.Height;
                     mines = Data.Size.Mines;
                     break;
                 case 0:
-                    n = 9;
-                    m = 9;
-                    mines = 10;
+                    n = Data.EasyField.Width;
+                    m = Data.EasyField.Height;
+                    mines = Data.EasyField.Mines;
                     break;
                 case 1:
-                    n = 16;
-                    m = 16;
-                    mines = 40;
+                    n = Data.MediumField.Width;
+                    m = Data.MediumField.Height;
+                    mines = Data.MediumField.Mines;
                     break;
                 case 2:
-                    n = 16;
-                    m = 30;
-                    mines = 100;
+                    n = Data.HardField.Width;
+                    m = Data.HardField.Height;
+                    mines = Data.HardField.Mines;
                     break;
             }
             this.Width = m * (width + 8);
@@ -65,19 +64,23 @@ namespace MineSweeper
                                                                                         System.Drawing.FontStyle.Bold,
                                                                                         System.Drawing.GraphicsUnit.Point,
                                                                                         ((byte)(204)));
+                    buttons[i * j].BackColor = Color.LightGray;
+                    buttons[i * j].ForeColor = Color.LightGray;
+                    buttons[i*j].Text = "1";
+                    buttons[i * j].FlatStyle = FlatStyle.Popup;
                     this.Controls.Add(buttons[i * j]);
                     x += width + 5;
                 }
-                x = standart;
+                x = Data.Standart.X;
                 y += height + 5;
             }
-            y = standart;
+            y = Data.Standart.Y;
         }
 
         private void ButtonClick(object sender, EventArgs e)
         {
             Button button = (Button)sender;
-            button.Text = "1";
+            button.ForeColor = Color.Blue;
             button.Enabled = false;
         }
     }
