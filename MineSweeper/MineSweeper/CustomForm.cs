@@ -21,6 +21,7 @@ namespace MineSweeper
             Data.Stage.Value = -1;
             Data.Size.Width = Convert.ToInt32(txtLenght.Text);
             Data.Size.Height = Convert.ToInt32(txtHeight.Text);
+            Data.Size.Mines = Convert.ToInt32(txtMines.Text);
             OpenForm();
         }
 

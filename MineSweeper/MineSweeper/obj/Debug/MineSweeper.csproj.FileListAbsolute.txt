@@ -18,3 +18,14 @@ Z:\MineSweeper\MineSweeper\obj\Debug\MineSweeper.MainForm.resources
 Z:\MineSweeper\MineSweeper\obj\Debug\MineSweeper.MainMenu.resources
 Z:\MineSweeper\MineSweeper\obj\Debug\MineSweeper.Properties.Resources.resources
 Z:\MineSweeper\MineSweeper\obj\Debug\MineSweeper.csproj.GenerateResource.Cache
+C:\Users\Dima\Downloads\MineSweeper-master\MineSweeper-master\MineSweeper\MineSweeper\bin\Debug\MineSweeper.exe
+C:\Users\Dima\Downloads\MineSweeper-master\MineSweeper-master\MineSweeper\MineSweeper\bin\Debug\MineSweeper.pdb
+C:\Users\Dima\Downloads\MineSweeper-master\MineSweeper-master\MineSweeper\MineSweeper\obj\Debug\MineSweeper.csprojResolveAssemblyReference.cache
+C:\Users\Dima\Downloads\MineSweeper-master\MineSweeper-master\MineSweeper\MineSweeper\obj\Debug\MineSweeper.CustomForm.resources
+C:\Users\Dima\Downloads\MineSweeper-master\MineSweeper-master\MineSweeper\MineSweeper\obj\Debug\MineSweeper.MainForm.resources
+C:\Users\Dima\Downloads\MineSweeper-master\MineSweeper-master\MineSweeper\MineSweeper\obj\Debug\MineSweeper.MainMenu.resources
+C:\Users\Dima\Downloads\MineSweeper-master\MineSweeper-master\MineSweeper\MineSweeper\obj\Debug\MineSweeper.Properties.Resources.resources
+C:\Users\Dima\Downloads\MineSweeper-master\MineSweeper-master\MineSweeper\MineSweeper\obj\Debug\MineSweeper.csproj.GenerateResource.Cache
+C:\Users\Dima\Downloads\MineSweeper-master\MineSweeper-master\MineSweeper\MineSweeper\obj\Debug\MineSweeper.csproj.CoreCompileInputs.cache
+C:\Users\Dima\Downloads\MineSweeper-master\MineSweeper-master\MineSweeper\MineSweeper\obj\Debug\MineSweeper.exe
+C:\Users\Dima\Downloads\MineSweeper-master\MineSweeper-master\MineSweeper\MineSweeper\obj\Debug\MineSweeper.pdb
