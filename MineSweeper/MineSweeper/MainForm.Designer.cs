@@ -38,6 +38,7 @@
             this.Name = "MainForm";
             this.Text = "MineSweeper";
             this.Load += new System.EventHandler(this.MainForm_Load);
+            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseClick);
             this.ResumeLayout(false);
 
         }

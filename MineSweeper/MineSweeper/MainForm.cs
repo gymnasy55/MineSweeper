@@ -12,7 +12,8 @@ namespace MineSweeper
     public partial class MainForm : Form
     {
         Random rnd;
-        int n, m, x, y, mines, width, height;
+        int n, m, x, y, mines, width, height, col, row;
+
         public MainForm()
         {
             InitializeComponent();
@@ -21,6 +22,17 @@ namespace MineSweeper
             y = Data.Standart.Y;
             width = Data.Size.CellWidth;
             height = Data.Size.CellHeight;
+        }
+
+        private void MainForm_MouseClick(object sender, MouseEventArgs e)
+        {
+            /*
+            int X = e.Location.X;
+            int Y = e.Location.Y;
+            row = Convert.ToInt32(Math.Truncate(((Y - Data.Standart.Y) / Convert.ToDouble(height)) + 1));
+            col = Convert.ToInt32(Math.Truncate(((X - Data.Standart.Y) / Convert.ToDouble(width)) + 1));
+            MessageBox.Show(row.ToString() + col.ToString());
+            */
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -58,8 +70,6 @@ namespace MineSweeper
                 for(int j = 0; j < m; j++)
                 {
                     labels[i, j] = new Label();
-                    //buttons[i, j].MouseClick += new EventHandler(button1_MouseClick);
-                    //buttons[i, j].MouseClick += button1_MouseClick;
                     labels[i, j].Left = x;
                     labels[i, j].Top = y;
                     labels[i, j].Width = width;
@@ -144,19 +154,17 @@ namespace MineSweeper
             {
                 int x = minespos[i].X;
                 int y = minespos[i].Y;
-
                 a[x, y].Text = "B";
             }
             return a;
         }
+
         private Label[,] TakeBombs(Label[,] a, int n, int m, Point[] minespos)
         {
             for(int i=0;i<mines;i++)
             {
                 int q;
                 int w;
-                
-
                 do
                 {
                     q = rnd.Next(0, n);
@@ -168,16 +176,125 @@ namespace MineSweeper
             }
             return a;
         }
+
+        private Label[,] CheckEmptyCell(Label[,] a, int x, int y)
+        {
+            a[x, y].ForeColor = Color.Blue;
+            a[x, y].Enabled = false;
+            if ((x > 0))
+            {
+                if ((a[x - 1, y].Text == "0") && (a[x - 1, y].Enabled == true))
+                {
+                    CheckEmptyCell(a, x - 1, y);
+                }
+                else
+                {
+                    a[x - 1, y].ForeColor = Color.Blue;
+                    a[x - 1, y].Enabled = false;
+                }
+            }
+            if ((x < n - 1))
+            {
+                if ((a[x + 1, y].Text == "0") && (a[x + 1, y].Enabled == true))
+                {
+                    CheckEmptyCell(a, x + 1, y);
+                }
+                else
+                {
+                    a[x + 1, y].ForeColor = Color.Blue;
+                    a[x + 1, y].Enabled = false;
+                }
+            }
+            if ((y < m - 1))
+            {
+                if ((a[x, y + 1].Text == "0") && (a[x, y + 1].Enabled == true))
+                {
+                    CheckEmptyCell(a, x, y + 1);
+                }
+                else
+                {
+                    a[x, y + 1].ForeColor = Color.Blue;
+                    a[x, y + 1].Enabled = false;
+                }
+            }
+            if ((y > 0))
+            {
+                if ((a[x, y - 1].Text == "0") && (a[x, y - 1].Enabled == true))
+                {
+                    CheckEmptyCell(a, x, y - 1);
+                }
+                else
+                {
+                    a[x, y - 1].ForeColor = Color.Blue;
+                    a[x, y - 1].Enabled = false;
+                }
+            }
+            if ((x < n - 1) && (y < m - 1))
+            {
+                if ((a[x + 1, y + 1].Text == "0") && (a[x + 1, y + 1].Enabled == true))
+                {
+                    CheckEmptyCell(a, x + 1, y + 1);
+                }
+                else
+                {
+                    a[x + 1, y + 1].ForeColor = Color.Blue;
+                    a[x + 1, y + 1].Enabled = false;
+                }
+            }
+            if ((x > 0) && (y > 0))
+            {
+                if ((a[x - 1, y - 1].Text == "0") && (a[x - 1, y - 1].Enabled == true))
+                {
+                    CheckEmptyCell(a, x - 1, y - 1);
+                }
+                else
+                {
+                    a[x - 1, y - 1].ForeColor = Color.Blue;
+                    a[x - 1, y - 1].Enabled = false;
+                }
+            }
+            if ((x > 0) && (y < m - 1))
+            {
+                if ((a[x - 1, y + 1].Text == "0") && (a[x - 1, y + 1].Enabled == true))
+                {
+                    CheckEmptyCell(a, x - 1, y + 1);
+                }
+                else
+                {
+                    a[x - 1, y + 1].ForeColor = Color.Blue;
+                    a[x - 1, y + 1].Enabled = false;
+                }
+            }
+            if ((x < n - 1) && (y > 0))
+            {
+                if ((a[x + 1, y - 1].Text == "0") && (a[x + 1, y - 1].Enabled == true))
+                {
+                    CheckEmptyCell(a, x + 1, y - 1);
+                }
+                else
+                {
+                    a[x + 1, y - 1].ForeColor = Color.Blue;
+                    a[x + 1, y - 1].Enabled = false;
+                }
+            }
+            return a;
+        }
+
         private Bitmap MyImage;
+
         private void ButtonClick(object sender, MouseEventArgs e)
         {
             Label label = (Label)sender;
+            int X = label.Left;
+            int Y = label.Top;
+            row = Convert.ToInt32(Math.Truncate(((Y - Data.Standart.Y) / Convert.ToDouble(height))));
+            col = Convert.ToInt32(Math.Truncate(((X - Data.Standart.Y) / Convert.ToDouble(width))));
+            MessageBox.Show("Ряд: " + row.ToString() + " Столбец: " + col.ToString());
             if (e.Button == MouseButtons.Right)
             {
                 MessageBox.Show("бла-бла-бла!!!2");
                 //MyImage = new Bitmap("flag.png");
                 //label.Image = MyImage;
-
             }
             else
             {
@@ -189,20 +306,19 @@ namespace MineSweeper
                     MessageBox.Show("Вы проиграли!");
                     this.Close();
                 }
-
             }
         }
         
         private void LabelEnter(object sender, EventArgs e)
         {
-            Label lbl = (Label)sender;
-            lbl.BorderStyle = BorderStyle.Fixed3D;
+            Label label = (Label)sender;
+            label.BorderStyle = BorderStyle.Fixed3D;
         }
 
         private void LabelLeave(object sender, EventArgs e)
         {
-            Label lbl = (Label)sender;
-            lbl.BorderStyle = BorderStyle.FixedSingle;
+            Label label = (Label)sender;
+            label.BorderStyle = BorderStyle.FixedSingle;
         }
     }
 }
