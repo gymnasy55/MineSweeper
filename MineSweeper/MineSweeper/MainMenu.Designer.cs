@@ -100,6 +100,7 @@
             this.Controls.Add(this.btnEasy);
             this.Controls.Add(this.label1);
             this.Name = "MainMenu";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MineSwepper";
             this.ResumeLayout(false);
             this.PerformLayout();

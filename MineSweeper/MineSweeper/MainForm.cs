@@ -50,66 +50,159 @@ namespace MineSweeper
             }
             this.Width = m * (width + 8);
             this.Height = n * (height + 8);
-            Button[,] buttons = new Button[n , m];
-            for(int i = 0; i < n; i++)
+            Label[,] labels = new Label[n , m];
+            Point[] minespos = new Point[mines];
+            for (int i = 0; i < mines; i++) { minespos[i] = new Point(x, y); }
+            for (int i = 0; i < n; i++)
             {
                 for(int j = 0; j < m; j++)
                 {
-                    buttons[i, j] = new Button();
-                    buttons[i, j].Left = x;
-                    buttons[i, j].Top = y;
-                    buttons[i, j].Width = width;
-                    buttons[i, j].Height = height;
-                    buttons[i, j].Click += new EventHandler(ButtonClick);
-                    buttons[i, j].Font = new System.Drawing.Font("Microsoft Sans Serif",
-                                                                                        16F,
-                                                                                        System.Drawing.FontStyle.Bold,
-                                                                                        System.Drawing.GraphicsUnit.Point,
-                                                                                        ((byte)(204)));
-                    buttons[i, j].BackColor = Color.LightGray;
-                    buttons[i, j].ForeColor = Color.LightGray;
-                    buttons[i, j].Text = "1";
-                    buttons[i, j].FlatStyle = FlatStyle.Popup;
-                    this.Controls.Add(buttons[i, j]);
-                    x += width + 5;
+                    labels[i, j] = new Label();
+                    //buttons[i, j].MouseClick += new EventHandler(button1_MouseClick);
+                    //buttons[i, j].MouseClick += button1_MouseClick;
+                    labels[i, j].Left = x;
+                    labels[i, j].Top = y;
+                    labels[i, j].Width = width;
+                    labels[i, j].Height = height;
+                    labels[i, j].MouseClick += ButtonClick;
+                    labels[i, j].BorderStyle = BorderStyle.FixedSingle;
+                    labels[i, j].MouseEnter += new EventHandler(LabelEnter);
+                    labels[i, j].AutoSize = false;
+                    labels[i, j].MouseLeave += new EventHandler(LabelLeave);
+                    labels[i, j].Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+                    labels[i, j].BackColor = Color.LightGray;
+                    labels[i, j].ForeColor = Color.LightGray;
+                    labels[i, j].FlatStyle = FlatStyle.Popup;
+                    labels[i, j].Text = "0";
+                    this.Controls.Add(labels[i, j]);
+                    x += width + 1;
                 }
                 x = Data.Standart.X;
-                y += height + 5;
+                y += height + 1;
             }
             y = Data.Standart.Y;
-            TakeBombs(buttons, n, m);
+            TakeBombs(labels, n, m, minespos);
+            CheckBombs(labels, minespos);
         }
 
-        private Button[,] TakeBombs(Button[,] a, int n, int m)
+        private Label[,] CheckBombs(Label[,] a, Point[] minespos)
         {
-            
-            
-                for(int i=0;i<mines;i++)
+            for(int i=0; i<mines;i++)
+            {
+                int x = minespos[i].X;
+                int y = minespos[i].Y;
+                if ((x > 0))
                 {
-                    int q;
-                    int w;
-
-                    do
-                    {
-                        q = rnd.Next(0, n);
-                        w = rnd.Next(0, m);
-                    }
-                    while (a[q, w].Text == "B");
-                    
-                    a[q, w].Text = "B";
+                    int e = Convert.ToInt32(a[x - 1, y].Text) ;
+                    e++;
+                    a[x - 1, y].Text = Convert.ToString(e);
                 }
+                if ((x < n-1))
+                {
+                    int e = Convert.ToInt32(a[x + 1, y].Text) ;
+                    e++;
+                    a[x + 1, y].Text = Convert.ToString(e);
+                }
+                if ((y < m - 1))
+                {
+                    int e = Convert.ToInt32(a[x, y + 1].Text) ;
+                    e++;
+                    a[x, y+1].Text = Convert.ToString(e);
+                }
+                if ((y > 0))
+                {
+                    int e = Convert.ToInt32(a[x, y - 1].Text) ;
+                    e++;
+                    a[x , y-1].Text = Convert.ToString(e);
+                }
+                if ((x <n-1) && (y < m-1) )
+                {
+                    int e = Convert.ToInt32(a[x + 1, y + 1].Text) ;
+                    e++;
+                    a[x+1 , y + 1].Text = Convert.ToString(e);
+                }
+                if ((x > 0)  && (y > 0) )
+                {
+                    int e = Convert.ToInt32(a[x - 1, y - 1].Text);
+                    e++;
+                    a[x - 1, y - 1].Text = Convert.ToString(e);
+                }
+                if ((x > 0) && (y < m-1))
+                {
+                    int e = Convert.ToInt32(a[x - 1, y + 1].Text);
+                    e++;
+                    a[x - 1, y + 1].Text = Convert.ToString(e);
+                }
+                if ((x <n-1) && (y >0))
+                {
+                    int e = Convert.ToInt32(a[x + 1, y - 1].Text);
+                    e++;
+                    a[x + 1, y - 1].Text = Convert.ToString(e);
+                }
+            }
+            for (int i = 0; i < mines; i++)
+            {
+                int x = minespos[i].X;
+                int y = minespos[i].Y;
+
+                a[x, y].Text = "B";
+            }
             return a;
         }
-        private void ButtonClick(object sender, EventArgs e)
+        private Label[,] TakeBombs(Label[,] a, int n, int m, Point[] minespos)
         {
-            Button button = (Button)sender;
-            button.ForeColor = Color.Blue;
-            button.Enabled = false;
-            if (button.Text == "B")
+            for(int i=0;i<mines;i++)
             {
-                MessageBox.Show("Вы проиграли!");
-                this.Close();
+                int q;
+                int w;
+                
+
+                do
+                {
+                    q = rnd.Next(0, n);
+                    w = rnd.Next(0, m);
+                }
+                while (a[q, w].Text == "-100");
+                minespos[i] = new Point(q, w);
+                a[q, w].Text = "-100";
             }
+            return a;
+        }
+        private Bitmap MyImage;
+        private void ButtonClick(object sender, MouseEventArgs e)
+        {
+            Label label = (Label)sender;
+            if (e.Button == MouseButtons.Right)
+            {
+                MessageBox.Show("бла-бла-бла!!!2");
+                //MyImage = new Bitmap("flag.png");
+                //label.Image = MyImage;
+
+            }
+            else
+            {
+                MessageBox.Show("бла-бла-бла!!!");
+                label.ForeColor = Color.Blue;
+                label.Enabled = false;
+                if (label.Text == "B")
+                {
+                    MessageBox.Show("Вы проиграли!");
+                    this.Close();
+                }
+
+            }
+        }
+        
+        private void LabelEnter(object sender, EventArgs e)
+        {
+            Label lbl = (Label)sender;
+            lbl.BorderStyle = BorderStyle.Fixed3D;
+        }
+
+        private void LabelLeave(object sender, EventArgs e)
+        {
+            Label lbl = (Label)sender;
+            lbl.BorderStyle = BorderStyle.FixedSingle;
         }
     }
 }

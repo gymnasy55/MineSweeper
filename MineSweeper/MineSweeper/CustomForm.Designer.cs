@@ -106,7 +106,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(427, 303);
+            this.ClientSize = new System.Drawing.Size(419, 288);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.txtMines);
             this.Controls.Add(this.label3);
@@ -115,6 +115,7 @@
             this.Controls.Add(this.txtLenght);
             this.Controls.Add(this.label1);
             this.Name = "CustomForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MineSweeper";
             this.ResumeLayout(false);
             this.PerformLayout();
