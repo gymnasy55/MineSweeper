@@ -66,10 +66,10 @@ namespace MineSweeper
             Data.EasyField.Mines = 10;
             Data.MediumField.Width = 16;
             Data.MediumField.Height = 16;
-            Data.MediumField.Mines = 10;
+            Data.MediumField.Mines = 40;
             Data.HardField.Width = 16;
             Data.HardField.Height = 30;
-            Data.HardField.Mines = 10;
+            Data.HardField.Mines = 99;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainMenu());

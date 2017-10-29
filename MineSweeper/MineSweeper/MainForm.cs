@@ -12,8 +12,9 @@ namespace MineSweeper
     public partial class MainForm : Form
     {
         Random rnd;
-        int n, m, x, y, mines, width, height, col, row;
-
+        int n, m, x, y, mines, width, height, col, row, numflag;
+        Label[,] labels;
+        Label flag;
         public MainForm()
         {
             InitializeComponent();
@@ -22,6 +23,11 @@ namespace MineSweeper
             y = Data.Standart.Y;
             width = Data.Size.CellWidth;
             height = Data.Size.CellHeight;
+        }
+
+        private void MainForm_Paint(object sender, PaintEventArgs e)
+        {
+            flag.Text = numflag.ToString();
         }
 
         private void MainForm_MouseClick(object sender, MouseEventArgs e)
@@ -62,7 +68,18 @@ namespace MineSweeper
             }
             this.Width = m * (width + 8);
             this.Height = n * (height + 8);
-            Label[,] labels = new Label[n , m];
+            flag = new Label();
+            numflag = mines;
+            flag.Left = this.Width - 53;
+            flag.Width = 35;
+            flag.BorderStyle = BorderStyle.Fixed3D;
+            flag.TextAlign = ContentAlignment.MiddleCenter;
+            flag.Top = 0 + 10;
+            flag.Text = numflag.ToString();
+            flag.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            flag.ForeColor = Color.FromArgb(0, 255, 0, 255);
+            this.Controls.Add(flag);
+            labels = new Label[n , m];
             Point[] minespos = new Point[mines];
             for (int i = 0; i < mines; i++) { minespos[i] = new Point(x, y); }
             for (int i = 0; i < n; i++)
@@ -72,6 +89,7 @@ namespace MineSweeper
                     labels[i, j] = new Label();
                     labels[i, j].Left = x;
                     labels[i, j].Top = y;
+                    labels[i, j].TextAlign = ContentAlignment.MiddleCenter;
                     labels[i, j].Width = width;
                     labels[i, j].Height = height;
                     labels[i, j].MouseClick += ButtonClick;
@@ -82,7 +100,6 @@ namespace MineSweeper
                     labels[i, j].Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
                     labels[i, j].BackColor = Color.LightGray;
                     labels[i, j].ForeColor = Color.LightGray;
-                    labels[i, j].FlatStyle = FlatStyle.Popup;
                     labels[i, j].Text = "0";
                     this.Controls.Add(labels[i, j]);
                     x += width + 1;
@@ -181,6 +198,8 @@ namespace MineSweeper
         {
             a[x, y].ForeColor = Color.Blue;
             a[x, y].Enabled = false;
+            a[x, y].Text = "";
+            a[x, y].BackColor = Color.LightSlateGray;
             if ((x > 0))
             {
                 if ((a[x - 1, y].Text == "0") && (a[x - 1, y].Enabled == true))
@@ -191,6 +210,7 @@ namespace MineSweeper
                 {
                     a[x - 1, y].ForeColor = Color.Blue;
                     a[x - 1, y].Enabled = false;
+                    a[x - 1, y].BackColor = Color.LightSlateGray;
                 }
             }
             if ((x < n - 1))
@@ -203,6 +223,7 @@ namespace MineSweeper
                 {
                     a[x + 1, y].ForeColor = Color.Blue;
                     a[x + 1, y].Enabled = false;
+                    a[x + 1, y].BackColor = Color.LightSlateGray;
                 }
             }
             if ((y < m - 1))
@@ -215,6 +236,7 @@ namespace MineSweeper
                 {
                     a[x, y + 1].ForeColor = Color.Blue;
                     a[x, y + 1].Enabled = false;
+                    a[x, y + 1].BackColor = Color.LightSlateGray;
                 }
             }
             if ((y > 0))
@@ -227,6 +249,7 @@ namespace MineSweeper
                 {
                     a[x, y - 1].ForeColor = Color.Blue;
                     a[x, y - 1].Enabled = false;
+                    a[x, y - 1].BackColor = Color.LightSlateGray;
                 }
             }
             if ((x < n - 1) && (y < m - 1))
@@ -239,6 +262,7 @@ namespace MineSweeper
                 {
                     a[x + 1, y + 1].ForeColor = Color.Blue;
                     a[x + 1, y + 1].Enabled = false;
+                    a[x + 1, y + 1].BackColor = Color.LightSlateGray;
                 }
             }
             if ((x > 0) && (y > 0))
@@ -251,6 +275,7 @@ namespace MineSweeper
                 {
                     a[x - 1, y - 1].ForeColor = Color.Blue;
                     a[x - 1, y - 1].Enabled = false;
+                    a[x - 1, y - 1].BackColor = Color.LightSlateGray;
                 }
             }
             if ((x > 0) && (y < m - 1))
@@ -263,6 +288,7 @@ namespace MineSweeper
                 {
                     a[x - 1, y + 1].ForeColor = Color.Blue;
                     a[x - 1, y + 1].Enabled = false;
+                    a[x - 1, y + 1].BackColor = Color.LightSlateGray;
                 }
             }
             if ((x < n - 1) && (y > 0))
@@ -275,6 +301,7 @@ namespace MineSweeper
                 {
                     a[x + 1, y - 1].ForeColor = Color.Blue;
                     a[x + 1, y - 1].Enabled = false;
+                    a[x + 1, y - 1].BackColor = Color.LightSlateGray;
                 }
             }
             return a;
@@ -284,26 +311,35 @@ namespace MineSweeper
 
         private void ButtonClick(object sender, MouseEventArgs e)
         {
-            Label label = (Label)sender;
-            int X = label.Left;
-            int Y = label.Top;
-            row = Convert.ToInt32(Math.Truncate(((Y - Data.Standart.Y) / Convert.ToDouble(height))));
-            col = Convert.ToInt32(Math.Truncate(((X - Data.Standart.Y) / Convert.ToDouble(width))));
-            MessageBox.Show("Ряд: " + row.ToString() + " Столбец: " + col.ToString());
             if (e.Button == MouseButtons.Right)
             {
-                MessageBox.Show("бла-бла-бла!!!2");
+                if(numflag < 0)
+                {
+                    numflag = 0;
+                    MessageBox.Show("You have run out of flags!", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else { numflag--; }
                 //MyImage = new Bitmap("flag.png");
                 //label.Image = MyImage;
             }
             else
             {
-                MessageBox.Show("бла-бла-бла!!!");
+                Label label = (Label)sender;
+                label.BackColor = Color.LightSlateGray;
+                int X = label.Left;
+                int Y = label.Top;
+                row = Convert.ToInt32(Math.Truncate(((Y - Data.Standart.Y) / Convert.ToDouble(height))));
+                col = Convert.ToInt32(Math.Truncate(((X - Data.Standart.X) / Convert.ToDouble(width))));
+                if (labels[row, col].Text == "0")
+                {
+                    CheckEmptyCell(labels, row, col);
+                }
                 label.ForeColor = Color.Blue;
                 label.Enabled = false;
                 if (label.Text == "B")
                 {
-                    MessageBox.Show("Вы проиграли!");
+                    label.BackColor = Color.Red;
+                    MessageBox.Show("YOU LOSE!", "LOSER!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     this.Close();
                 }
             }
