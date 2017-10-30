@@ -110,6 +110,7 @@ namespace MineSweeper
                     labels[i, j].TextAlign = ContentAlignment.MiddleCenter;
                     labels[i, j].Width = width;
                     labels[i, j].Height = height;
+                    labels[i, j].Image = null;
                     labels[i, j].MouseClick += ButtonClick;
                     labels[i, j].BorderStyle = BorderStyle.FixedSingle;
                     labels[i, j].MouseEnter += new EventHandler(LabelEnter);
@@ -210,6 +211,19 @@ namespace MineSweeper
                 a[q, w].Text = "-100";
             }
             return a;
+        }
+
+        private int CheckWin(Label[,] labels, int n, int m)
+        {
+            int counter = 0;
+            for(int i = 0; i < n; i++)
+            {
+                for(int j = 0; j < m; j++)
+                {
+
+                }
+            }
+            return counter;
         }
 
         private Label[,] CheckEmptyCell(Label[,] a, int x, int y)
@@ -338,7 +352,16 @@ namespace MineSweeper
                     MessageBox.Show("You have run out of flags!", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 else { numflag--; }
-                MyImage = new Bitmap("flag.png");
+                if(label.Image == MyImage)
+                {
+                    MyImage = null;
+                    numflag++;
+                }
+                else
+                {
+                    MyImage = new Bitmap("flag.png");
+                    label.ForeColor = Color.Transparent;
+                }
                 label.Image = MyImage;
             }
             else
