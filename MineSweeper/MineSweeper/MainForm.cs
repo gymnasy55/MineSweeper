@@ -36,6 +36,8 @@ namespace MineSweeper
         private void MainForm_Paint(object sender, PaintEventArgs e)
         {
             flag.Text = numflag.ToString();
+            int counter = CheckWin(labels, n, m);
+            if (counter == mines) { MessageBox.Show("YOU WIN!!!", "WINNER", MessageBoxButtons.OK, MessageBoxIcon.Information); }
         }
 
         private void MainForm_MouseClick(object sender, MouseEventArgs e)
@@ -220,7 +222,10 @@ namespace MineSweeper
             {
                 for(int j = 0; j < m; j++)
                 {
-
+                    if(labels[i, j].Enabled == true)
+                    {
+                        counter++;
+                    }
                 }
             }
             return counter;

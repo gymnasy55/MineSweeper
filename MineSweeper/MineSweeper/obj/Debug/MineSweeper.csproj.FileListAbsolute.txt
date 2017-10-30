@@ -50,3 +50,13 @@ Z:\Проекты\Minesweeper\MineSweeper\MineSweeper\obj\Debug\MineSweeper.Prop
 Z:\Проекты\Minesweeper\MineSweeper\MineSweeper\obj\Debug\MineSweeper.csproj.GenerateResource.Cache
 Z:\Проекты\Minesweeper\MineSweeper\MineSweeper\obj\Debug\MineSweeper.exe
 Z:\Проекты\Minesweeper\MineSweeper\MineSweeper\obj\Debug\MineSweeper.pdb
+C:\Users\lambo\Desktop\MineSweeper-master\MineSweeper\MineSweeper\bin\Debug\MineSweeper.exe
+C:\Users\lambo\Desktop\MineSweeper-master\MineSweeper\MineSweeper\bin\Debug\MineSweeper.pdb
+C:\Users\lambo\Desktop\MineSweeper-master\MineSweeper\MineSweeper\obj\Debug\MineSweeper.csprojResolveAssemblyReference.cache
+C:\Users\lambo\Desktop\MineSweeper-master\MineSweeper\MineSweeper\obj\Debug\MineSweeper.CustomForm.resources
+C:\Users\lambo\Desktop\MineSweeper-master\MineSweeper\MineSweeper\obj\Debug\MineSweeper.MainForm.resources
+C:\Users\lambo\Desktop\MineSweeper-master\MineSweeper\MineSweeper\obj\Debug\MineSweeper.MainMenu.resources
+C:\Users\lambo\Desktop\MineSweeper-master\MineSweeper\MineSweeper\obj\Debug\MineSweeper.Properties.Resources.resources
+C:\Users\lambo\Desktop\MineSweeper-master\MineSweeper\MineSweeper\obj\Debug\MineSweeper.csproj.GenerateResource.Cache
+C:\Users\lambo\Desktop\MineSweeper-master\MineSweeper\MineSweeper\obj\Debug\MineSweeper.exe
+C:\Users\lambo\Desktop\MineSweeper-master\MineSweeper\MineSweeper\obj\Debug\MineSweeper.pdb
