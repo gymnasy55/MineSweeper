@@ -329,6 +329,7 @@ namespace MineSweeper
 
         private void ButtonClick(object sender, MouseEventArgs e)
         {
+            Label label = (Label)sender;
             if (e.Button == MouseButtons.Right)
             {
                 if(numflag < 0)
@@ -337,12 +338,11 @@ namespace MineSweeper
                     MessageBox.Show("You have run out of flags!", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 else { numflag--; }
-                //MyImage = new Bitmap("flag.png");
-                //label.Image = MyImage;
+                MyImage = new Bitmap("flag.png");
+                label.Image = MyImage;
             }
             else
             {
-                Label label = (Label)sender;
                 timer1.Enabled = true;
                 label.BackColor = Color.LightSlateGray;
                 int X = label.Left;
