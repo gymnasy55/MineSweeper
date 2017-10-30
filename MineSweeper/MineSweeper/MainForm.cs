@@ -344,30 +344,38 @@ namespace MineSweeper
             return a;
         }
 
-        private Bitmap MyImage;
+        private bool CheckFlag(Label a)
+        {
+            if(a.Image == Image.FromFile("flag.png")) { return true; }
+            else { return false; }
+        }
 
         private void ButtonClick(object sender, MouseEventArgs e)
         {
             Label label = (Label)sender;
             if (e.Button == MouseButtons.Right)
             {
-                if(numflag < 0)
+                if(numflag <= 0)
                 {
                     numflag = 0;
                     MessageBox.Show("You have run out of flags!", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
-                else { numflag--; }
-                if(label.Image == MyImage)
-                {
-                    MyImage = null;
-                    numflag++;
-                }
                 else
                 {
-                    MyImage = new Bitmap("flag.png");
-                    label.ForeColor = Color.Transparent;
+                    numflag--;
+                    label.Image = Image.FromFile("flag.png");
+                    bool checkflag = CheckFlag(label);
+                    if(checkflag == true)
+                    {
+                        numflag++;
+                        label.Image = null;
+                        label.Invalidate();
+                    }
+                    else
+                    {
+                        label.Image = Image.FromFile("flag.png");
+                    }
                 }
-                label.Image = MyImage;
             }
             else
             {
@@ -391,7 +399,7 @@ namespace MineSweeper
                 }
             }
         }
-        
+
         private void LabelEnter(object sender, EventArgs e)
         {
             Label label = (Label)sender;
