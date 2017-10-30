@@ -12,9 +12,16 @@ namespace MineSweeper
     public partial class MainForm : Form
     {
         Random rnd;
-        int n, m, x, y, mines, width, height, col, row, numflag;
+        int n, m, x, y, mines, width, height, col, row, numflag, time;
         Label[,] labels;
-        Label flag;
+        Label flag, timer;
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            time++;
+            timer.Text = time.ToString();
+        }
+
         public MainForm()
         {
             InitializeComponent();
@@ -23,6 +30,7 @@ namespace MineSweeper
             y = Data.Standart.Y;
             width = Data.Size.CellWidth;
             height = Data.Size.CellHeight;
+            time = 0;
         }
 
         private void MainForm_Paint(object sender, PaintEventArgs e)
@@ -79,6 +87,16 @@ namespace MineSweeper
             flag.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             flag.ForeColor = Color.FromArgb(0, 255, 0, 255);
             this.Controls.Add(flag);
+            timer = new Label();
+            timer.Text = time.ToString();
+            timer.Width = 35;
+            timer.BorderStyle = BorderStyle.Fixed3D;
+            timer.TextAlign = ContentAlignment.MiddleCenter;
+            timer.Top = height * m - timer.Height;
+            timer.Left = flag.Left;
+            timer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            timer.ForeColor = Color.FromArgb(0, 0, 255, 255);
+            this.Controls.Add(timer);
             labels = new Label[n , m];
             Point[] minespos = new Point[mines];
             for (int i = 0; i < mines; i++) { minespos[i] = new Point(x, y); }
@@ -160,7 +178,7 @@ namespace MineSweeper
                     e++;
                     a[x - 1, y + 1].Text = Convert.ToString(e);
                 }
-                if ((x <n-1) && (y >0))
+                if ((x < n - 1) && (y > 0))
                 {
                     int e = Convert.ToInt32(a[x + 1, y - 1].Text);
                     e++;
@@ -325,6 +343,7 @@ namespace MineSweeper
             else
             {
                 Label label = (Label)sender;
+                timer1.Enabled = true;
                 label.BackColor = Color.LightSlateGray;
                 int X = label.Left;
                 int Y = label.Top;
